@@ -1,6 +1,7 @@
 # AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets
 
-# Abstract
+# Abstract : https://doi.org/10.48550/arXiv.2405.04605
+
 **BACKGROUND:** Lung cancer's high mortality rate can be mitigated by early detection, which is
 increasingly reliant on artificial intelligence (AI) for diagnostic imaging. However, the performance of AI
 models is contingent upon the datasets used for their training and validation.
@@ -32,7 +33,10 @@ resource for lung cancer AI research. By making our models and code publicly ava
 accelerate research, enhance reproducibility, and foster collaborative advancements in medical AI.
 
 
-### Citation
+### Citation Manuscript 
+
+
+
 ```ruby
 @article{tushar2024ai,
   title={AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets},
@@ -43,4 +47,11 @@ accelerate research, enhance reproducibility, and foster collaborative advanceme
 ```
 ```ruby
 Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
+```
+
+### Citation Dataset- Duke Lung
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13799069.svg)](https://doi.org/10.5281/zenodo.13799069) 
+```ruby
+A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, “Duke Lung Cancer Screening Dataset 2024”. Zenodo, Mar. 05, 2024. doi: 10.5281/zenodo.13799069.
 ```
