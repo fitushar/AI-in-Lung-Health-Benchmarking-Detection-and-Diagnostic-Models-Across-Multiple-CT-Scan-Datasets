@@ -58,7 +58,17 @@ A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, �
 
 
 
-# Datasets 
+# Datasets
+
+## Duke Lung Cancer Screening Dataset 2024 (DLCS 2024) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13799069.svg)](https://doi.org/10.5281/zenodo.13799069) 
+
+**Background:** Lung cancer risk classification is an increasingly important area of research as low-dose thoracic CT screening programs have become standard of care for patients at high risk for lung cancer. There is limited availability of large, annotated public databases for the training and testing of algorithms for lung nodule classification.
+
+**Methods:** Screening chest CT scans done between January 1, 2015 and June 30, 2021 at Duke University Health System were considered for this study. Efficient nodule annotation was performed semi-automatically by using a publicly available deep learning nodule detection algorithm trained on the LUNA16 dataset to identify initial candidates, which were then accepted based on nodule location in the radiology text report or manually annotated by a medical student and a fellowship-trained cardiothoracic radiologist.
+
+**Results:** The dataset contains 1613 CT volumes with 2487 annotated nodules, selected from a total dataset of 2061 patients, with the remaining data reserved for future testing. Radiologist spot-checking confirmed the semi-automated annotation had an accuracy rate of >90%.
+
+**Conclusions:** The  Duke Lung Cancer Screening Dataset 2024 is the first large dataset for CT screening for lung cancer reflecting the use of current CT technology. This represents a useful resource of lung cancer risk classification research, and the efficient annotation methods described for its creation may be used to generate similar databases for research in the future
 
 
 ## [NLST](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/tree/main/NLST_Data_Annotations)
@@ -70,11 +80,23 @@ To extract 3D annotations from the 2D annotations, we first verified the 2D anno
 
 The complete code for generating the 3D annotations, along with a visualization script to display these annotations, will be released soon. A preview of the visualization is shown in this [Jupyter Notebook](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/blob/main/NLST_Data_Annotations/3D_Annotation_Visualizations_NLST.ipynb).
 
+## LUNA16
+
+## 🚀 Coming Soon
+We are currently working on releasing the complete codebase for detection, classification (model weights), pre-processing, and training/validation pipelines. This release will include detailed scripts and instructions to facilitate reproducibility and support further research in this area. 
+
+Stay tuned! The code will be available here soon.
+
+![Coming Soon](https://img.shields.io/badge/Status-Coming%20Soon-orange)
 
 
 
 
+# Citations
 
+* Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
+* A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, “Duke Lung Cancer Screening Dataset 2024”. Zenodo, Mar. 05, 2024. doi: 10.5281/zenodo.13799069.
 * Mikhael, Peter G., et al. "Sybil: a validated deep learning model to predict future lung cancer risk from a single low-dose chest computed tomography." Journal of Clinical Oncology 41.12 (2023): 2191-2200.
 * National Lung Screening Trial Research Team. "Results of initial low-dose computed tomographic screening for lung cancer." New England Journal of Medicine 368.21 (2013): 1980-1991.
-* Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
+* Tushar, Fakrul Islam, et al. "Virtual NLST: towards replicating national lung screening trial." Medical Imaging 2024: Physics of Medical Imaging. Vol. 12925. SPIE, 2024.
+* Tushar, Fakrul Islam, et al. "VLST: Virtual Lung Screening Trial for Lung Cancer Detection Using Virtual Imaging Trial." arXiv preprint arXiv:2404.11221 (2024).
