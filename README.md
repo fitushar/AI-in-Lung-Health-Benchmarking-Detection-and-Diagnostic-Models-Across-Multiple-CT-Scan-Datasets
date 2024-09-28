@@ -55,3 +55,26 @@ Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diag
 ```ruby
 A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, “Duke Lung Cancer Screening Dataset 2024”. Zenodo, Mar. 05, 2024. doi: 10.5281/zenodo.13799069.
 ```
+
+
+
+# Datasets 
+
+
+## [NLST](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/tree/main/NLST_Data_Annotations)
+
+With the [National Lung Screening Trial (NLST)](https://www.nejm.org/doi/full/10.1056/NEJMoa1208962), for detection evaluation, we utilized open-access annotations provided by [Mikhael et al.(2023)](https://doi.org/10.1200/JCO.22.01345). We converted over 9,000 2D slice-level bounding box annotations from more than 900 lung cancer patients into 3D representations, resulting in over 1,100 nodule annotations.
+
+
+To extract 3D annotations from the 2D annotations, we first verified the 2D annotations within the DICOM images. Then, we extracted the `seriesinstanceuid`, `slice_location`, and `slice_number` from the DICOM headers. Subsequently, the image coordinate locations were converted to world coordinates. After verifying these annotations in the corresponding NIFTI images, we concatenated overlapping consecutive 2D annotations of the same lesion across multiple slices into a single 3D annotation. 
+
+The complete code for generating the 3D annotations, along with a visualization script to display these annotations, will be released soon. A preview of the visualization is shown in this [Jupyter Notebook](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/blob/main/NLST_Data_Annotations/3D_Annotation_Visualizations_NLST.ipynb).
+
+
+
+
+
+
+* Mikhael, Peter G., et al. "Sybil: a validated deep learning model to predict future lung cancer risk from a single low-dose chest computed tomography." Journal of Clinical Oncology 41.12 (2023): 2191-2200.
+* National Lung Screening Trial Research Team. "Results of initial low-dose computed tomographic screening for lung cancer." New England Journal of Medicine 368.21 (2013): 1980-1991.
+* Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
