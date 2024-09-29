@@ -253,6 +253,111 @@ We define the lung cancer classification task as given a nodule classifying it a
 *  **ResNet50-SWS++:** We developed an in-house model using our novel Strategic WarmStart++ (SWS++) pretraining approach. The method involved training a ResNet50 to reduce false positives in lung nodule detection, using a carefully stratified dataset based on nodule confidence scores. The resulting model, “ResNet50-SWS++,” was then fine-tuned for end-to-end lung cancer classification. [Tushar, F. I., et al. (2024)](https://arxiv.org/abs/2405.04605)
 
 
+
+## Cancer Classifications
+Pre-trained weights can be downloaded from here:
+* [Genesis_Chest_CT.pt](https://drive.google.com/file/d/16iIIRkl6zYAfQ14i9NOakwFd6w_xKBSY/view?usp=sharing)
+* [resnet_50_23dataset.pth](https://drive.google.com/file/d/1dIyJd3jpz9mBx534UA7deqT7f8N0sbJL/view?usp=sharing)
+
+## Benchmark models weights can be downloaded from here:
+*
+*
+
+## Training Classificatiob Models
+
+
+### Model Genesis Training 
+
+```ruby
+python3 path/to/ct_classification/training_AUC_StepLR.py -c /path/to/ct_classification/Model_Genesis_FineTuning/config_train_f1_modelGenesis.json
+```
+
+**|config_train_f1_modelGenesis.json**
+
+```ruby
+{
+"Model_save_path_and_utils": "path/to/Model_Genesis_FineTuning/",
+"run_prefix"               : "DukeLungRADS_Genesis_FineTuning",
+"which_fold"               : 1,
+
+"training_csv_path"   : "/path/to/DukeLungRADs_tr_CV4_dataset_v0_modified_fold_1_tr.csv",
+"validation_csv_path" : "/path/to/DukeLungRADs_tr_CV4_dataset_v0_modified_fold_1_val.csv",
+"data_column_name"    : "unique_Annotation_id_nifti",
+"label_column_name"   : "Malignant_lbl",
+
+"training_nifti_dir"    : "path/to/nifti/",
+"validation_nifti_dir"  : "path/to/nifti/",
+
+"image_key"           : "img",
+"label_key"           : "label",
+"img_patch_size"      : [64, 64, 64],
+"cache_root_dir"      : "path/to/cache_root_dir/",
+
+
+"train_batch_size" : 24,
+"val_batch_size"   : 24,
+"use_sampling"     : false,
+"sampling_ratio"   : 1,
+"num_worker"       : 8,
+"val_interval"     : 5,
+"max_epoch"        : 200,
+"Model_name"       : "Model_Genesis",
+"spatial_dims"     : 3,
+"n_input_channels" : 1,
+"num_classes"      : 2,
+"lr"               : 1e-2,
+"resume_training": false,
+"resume_checkpoint_path": ""
+
+}
+```
+
+### Model MedNet3D Training 
+
+```ruby
+python3 path/to/ct_classification/training_AUC_StepLR.py -c /path/to/ct_classification/Model_MedicalNet3D_FineTuning/config_train_f1_MedicalNet3D_resnet50.json
+```
+
+**|config_train_f1_MedicalNet3D_resnet50.json**
+```ruby
+{
+"Model_save_path_and_utils": "/path/to/Model_MedicalNet3D_FineTuning/",
+"run_prefix"               : "DukeLungRADS_MedicalNet3D_FineTuning",
+"which_fold"               : 1,
+
+"training_csv_path"   : "/path/to/DukeLungRADs_tr_CV4_dataset_v0_modified_fold_1_tr.csv",
+"validation_csv_path" : "/path/to/DukeLungRADs_tr_CV4_dataset_v0_modified_fold_1_val.csv",
+"data_column_name"    : "unique_Annotation_id_nifti",
+"label_column_name"   : "Malignant_lbl",
+
+"training_nifti_dir"    : "path/to/nifti/",
+"validation_nifti_dir"  : "path/to/nifti/",
+
+"image_key"           : "img",
+"label_key"           : "label",
+"img_patch_size"      : [64, 64, 64],
+"cache_root_dir"      : "path/to/cache_root_dir/",
+
+
+"train_batch_size" : 24,
+"val_batch_size"   : 24,
+"use_sampling"     : false,
+"sampling_ratio"   : 1,
+"num_worker"       : 8,
+"val_interval"     : 5,
+"max_epoch"        : 200,
+"Model_name"       : "resnet50_MedicalNet3D",
+"spatial_dims"     : 3,
+"n_input_channels" : 1,
+"num_classes"      : 2,
+"lr"               : 1e-2,
+"resume_training": false,
+"resume_checkpoint_path": ""
+
+}
+```
+
+
 ## 🚀 Coming Soon
 We are currently working on releasing the complete codebase for detection, classification (model weights), pre-processing, and training/validation pipelines. This release will include detailed scripts and instructions to facilitate reproducibility and support further research in this area. 
 
