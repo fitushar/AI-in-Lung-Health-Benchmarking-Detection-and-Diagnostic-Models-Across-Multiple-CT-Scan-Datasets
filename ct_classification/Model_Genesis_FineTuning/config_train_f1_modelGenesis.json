@@ -3,8 +3,8 @@
 "run_prefix"               : "DukeLungRADS_Genesis_FineTuning",
 "which_fold"               : 1,
 
-"training_csv_path"   : "/path/to/DukeLungRADs_tr_CV4_dataset_v0_modified_fold_1_tr.csv",
-"validation_csv_path" : "/path/to/DukeLungRADs_tr_CV4_dataset_v0_modified_fold_1_val.csv",
+"training_csv_path"   : "/path/to/fold_1_tr.csv",
+"validation_csv_path" : "/path/to/fold_1_val.csv",
 "data_column_name"    : "unique_Annotation_id_nifti",
 "label_column_name"   : "Malignant_lbl",
 
