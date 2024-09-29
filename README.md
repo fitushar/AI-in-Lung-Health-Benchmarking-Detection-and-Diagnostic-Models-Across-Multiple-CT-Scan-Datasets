@@ -243,6 +243,9 @@ python3 /path/to/ct_detection/testing.py -e /path/to/ct_detection/DukeLungRADS_B
 
 We define the lung cancer classification task as given a nodule classifying it as cancer or no-cancer. To benchmark the lung cancer classification task, we employed five different baseline models, including randomly initialized, supervised, and self-supervised pre-trained models, as well as our in-house proposed Strategic Warm-Start++ (SWS++) model.
 
+
+![Cancer Classification](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/blob/main/readme_figures/cancer_classifications_1.PNG)
+
 * **3D ResNet50**
 * **FMCB:** We adopted a recently published foundational model based on a self-supervised ResNet50, referred to as “FMCB.” We used it to extract 4,096 features per data point and trained a logistic regression model using the scikit-learn framework as suggested by authors. [Pai, S. et al. (2024)](https://www.nature.com/articles/s42256-024-00807-9)
 *  **Genesis:**  Models-Genesis's pre-trained ResNet50, added a classification layer on top of it and trained end-to-end. [Zhou, Z., et al. (2021)](https://www.sciencedirect.com/science/article/pii/S1361841520302048)
