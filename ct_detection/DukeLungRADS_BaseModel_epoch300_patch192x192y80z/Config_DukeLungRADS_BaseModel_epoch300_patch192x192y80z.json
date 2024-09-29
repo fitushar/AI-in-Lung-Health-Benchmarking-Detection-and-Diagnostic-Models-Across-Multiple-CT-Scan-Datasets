@@ -1,0 +1,12 @@
+{
+  "Model_save_path_and_utils": "/path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/",
+  "raw_img_path"             : "path/to/Data/LungRADS_resample/",
+  "dataset_info_path"        : "/path/to/ct_detection/dataset_files/",
+  "dataset_split_path"       : "/path/to/ct_detection/datasplit_folds/",
+  "number_of_folds"          : 4,
+  "seed"                     : 200,
+  "run_prefix"               : "DukeLungRADS_BaseModel_epoch300_patch192x192y80z",
+  "split_prefix"             : "DukeLungRADs_trcv4_fold",
+  "train_cinfig"             : "/path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/training_config.json",
+  "bash_path"                : "/path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/bash/"
+}

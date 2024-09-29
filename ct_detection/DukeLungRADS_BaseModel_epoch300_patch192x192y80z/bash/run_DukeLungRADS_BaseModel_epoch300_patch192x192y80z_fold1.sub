@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --job-name=CVIT-VNLST_1
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=fakrulislam.tushar@duke.edu
+#SBATCH --nodes=1
+#SBATCH -w node001
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --gpus=1
+#SBATCH --output=/path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/bash/slurm_logs/run_DukeLungRADS_BaseModel_epoch300_patch192x192y80z_fold1_.%j.out
+#SBATCH --error=/path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/bash/slurm_logs/run_DukeLungRADS_BaseModel_epoch300_patch192x192y80z_fold1._%j.err
+
+module load singularity/singularity.module
+export NVIDIA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES
+
+echo "VNLST Run "
+echo "Job Running On "; hostname
+echo "Nvidia Visible Devices: $NVIDIA_VISIBLE_DEVICES"
+
+singularity run --nv --bind /path/to /home/ft42/For_Tushar/vnlst_ft42_v1.sif python3 /path/to/ct_detection/training.py -e /path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/config/environment_DukeLungRADS_BaseModel_epoch300_patch192x192y80z_fold1.json -c /path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/training_config.json
+singularity run --nv --bind /path/to /home/ft42/For_Tushar/vnlst_ft42_v1.sif python3 /path/to/ct_detection/testing.py -e /path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/config/environment_DukeLungRADS_BaseModel_epoch300_patch192x192y80z_fold1.json -c /path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/training_config.json
