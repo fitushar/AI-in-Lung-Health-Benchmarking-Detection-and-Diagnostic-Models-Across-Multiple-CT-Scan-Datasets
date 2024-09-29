@@ -1,4 +1,4 @@
-# AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets
+# AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets [![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
 
 # Abstract : https://doi.org/10.48550/arXiv.2405.04605
 
@@ -35,6 +35,7 @@ accelerate research, enhance reproducibility, and foster collaborative advanceme
 
 ### Citation Manuscript 
 
+[![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
 
 
 ```ruby
