@@ -263,7 +263,7 @@ Pre-trained weights can be downloaded from here:
 *
 *
 
-# Training Classificatiob Models
+# Training Lungs Cancer Classification Models
 
 ## ResNet50 Training 
 
