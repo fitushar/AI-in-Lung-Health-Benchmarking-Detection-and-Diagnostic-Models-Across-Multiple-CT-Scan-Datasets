@@ -1,6 +1,6 @@
 # AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets [![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
 
-# Abstract : https://doi.org/10.48550/arXiv.2405.04605
+# Abstract
 
 **BACKGROUND:** Lung cancer's high mortality rate can be mitigated by early detection, which is
 increasingly reliant on artificial intelligence (AI) for diagnostic imaging. However, the performance of AI
