@@ -1,6 +1,4 @@
-# Reproducible Benchmarking for Lung Nodule Detection and
-Malignancy Classification Across Multiple Low-Dose CT
-Datasets [![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
+# Reproducible Benchmarking for Lung Nodule Detection and Malignancy Classification Across Multiple Low-Dose CT Datasets [![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
 
 # Abstract
 
