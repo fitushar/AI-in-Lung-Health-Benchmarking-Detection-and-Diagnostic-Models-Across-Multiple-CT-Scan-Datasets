@@ -55,7 +55,7 @@ A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, �
 
 ## 🚀 Updates
 
-- **[1] 3/5/2025** - 📢 Public release of **trained model weights**.
+- **[1] 3/5/2025** - 📢 Public release of **trained model weights**. 📥 Zenodo: https://zenodo.org/records/14967976
 - **[2] 3/7/2025** - 🖼️ Added **visualization script** for **DLCSD24**.
 - **[3] 9/2/2026** - 📂 Public release of **pre-processing scripr for classification**: https://github.com/fitushar/PiNS/.
 - **[4] 9/2/2026** - 📊 Benchmarking on **LUNA25 dataset** Reported to new pre-print (version 5: https://arxiv.org/abs/2405.04605).
@@ -430,6 +430,67 @@ python3 path/to/ct_classification/training_AUC_StepLR.py -c /path/to/ct_classifi
 
 }
 ```
+
+
+---
+
+## Classification Patch Extraction (PiNS)
+
+For nodule-level classification, PiNS provides a fully Dockerized patch extraction pipeline that generates fixed-size 3D classification patches centered at candidate nodule locations. This step standardizes input preparation and ensures reproducible patch generation across datasets.
+
+### Patch Extraction Script
+
+The following bash script is used to extract **64 × 64 × 64** 3D classification patches from CT volumes using candidate world coordinates:
+
+```
+scripts/DLCS24_CADe_64Qpatch.sh
+```
+
+Script link:
+[https://github.com/fitushar/PiNS/blob/main/scripts/DLCS24_CADe_64Qpatch.sh](https://github.com/fitushar/PiNS/blob/main/scripts/DLCS24_CADe_64Qpatch.sh)
+
+### Description
+
+This script launches the PiNS Docker container and executes the classification patch extraction pipeline. It performs the following steps:
+
+* Starts the PiNS Docker environment (`ft42/pins:latest`)
+* Installs required runtime dependencies (PyTorch, MONAI, OpenCV-headless)
+* Reads candidate nodule annotations from a CSV file
+* Extracts fixed-size 3D patches centered at nodule world coordinates
+* Applies CT intensity normalization and optional clipping
+* Saves patch-level metadata and NIfTI volumes for downstream classification
+
+### Key Parameters
+
+The script is configured through the following variables:
+
+```
+DATASET_NAME            : Dataset identifier (e.g., DLCS24)
+RAW_DATA_PATH           : Path to CT volumes
+DATASET_CSV             : CSV file containing candidate annotations
+NIFTI_CLM_NAME          : Column name for CT NIfTI files
+UNIQUE_ANNOTATION_ID    : Unique nodule identifier
+MALIGNANT_LBL           : Malignancy label column
+coordX, coordY, coordZ : World coordinates of the nodule
+PATCH_SIZE              : 64 64 64
+NORMALIZATION           : -1000 500 0 1
+CLIP                    : True / False
+```
+
+### Output
+
+The extracted classification patches are saved in the following structure:
+
+```
+demofolder/output/DLCS24_64Q_CAD_patches/
+├── nifti/            # Extracted 3D patches (.nii.gz)
+├── patches.csv       # Patch-level metadata and labels
+```
+
+
+
+
+
 # Citations
 
 * Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
