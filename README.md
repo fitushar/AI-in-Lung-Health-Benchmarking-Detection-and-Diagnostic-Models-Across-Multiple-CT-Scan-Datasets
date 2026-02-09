@@ -1,23 +1,33 @@
-# AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets [![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
+# Reproducible Benchmarking for Lung Nodule Detection and
+Malignancy Classification Across Multiple Low-Dose CT
+Datasets [![arXiv](https://img.shields.io/badge/arXiv-2405.04605-<color>.svg)](https://arxiv.org/abs/2405.04605)
 
 # Abstract
 
-Lung cancer remains the leading cause of cancer-related mortality worldwide, and early detection through
-low-dose computed tomography (LDCT) has shown significant promise in reducing death rates. With the
-growing integration of artificial intelligence (AI) into medical imaging, the development and evaluation
-of robust AI models require access to large, well-annotated datasets. In this study, we introduce the utility
-of Duke Lung Cancer Screening (DLCS) Dataset, the largest open-access LDCT dataset with over 2,000
-scans and 3,000 expert-verified nodules. We benchmark deep learning models for both 3D nodule
-detection and lung cancer classification across internal and external datasets including LUNA16,
-LUNA25, and NLST-3D+. For detection, we develop two MONAI-based RetinaNet models (DLCSDmD and LUNA16-mD), evaluated using the Competition Performance Metric (CPM). For classification,
-we compare five models, including state-of-the-art pretrained models (Models Genesis, Med3D), a selfsupervised foundation model (FMCB), a randomly initialized ResNet50, and proposed a novel Strategic
-Warm-Start++ (SWS++) model. SWS++ uses curated candidate patches to pretrain a classification
-backbone within the same detection pipeline, enabling task-relevant feature learning. Our models
-demonstrated strong generalizability, with SWS++ achieving comparable or superior performance to
-existing foundational models across multiple datasets (AUC: 0.71–0.90). All code, models, and data are
-publicly released to promote reproducibility and collaboration. This work establishes a standardized
-benchmarking resource for lung cancer AI research, supporting future efforts in model development,
-validation, and clinical translation.
+**Background:** Evaluation of artificial intelligence (AI) models for low-dose CT lung cancer screening is
+limited by heterogeneous datasets and annotation standards, making performance difficult to compare and translate across clinical settings.
+**Purpose:** To establish a public, reproducible multi-dataset benchmark for lung nodule detection and
+nodule-level cancer classification and to quantify cross-dataset generalizability.
+**Materials & Methods:** This retrospective study used Duke Lung Cancer Screening (DLCS), a large and
+well-annotated dataset, to develop models and to compare performances on three other datasets:
+LUNA16/LIDC-IDRI, NLST-3D, and LUNA25. For the first task, detection models were trained on
+DLCS and LUNA16 and evaluated using free-response ROC externally on NLST-3D. For the second task
+of nodule-level cancer classification, we compared five model types: randomly initialized ResNet50,
+Models Genesis, Med3D, Foundation Model for Cancer Biomarkers, and Strategic Warm-Start
+(ResNet50-SWS) pretrained with detection-derived candidate patches stratified by confidence.
+Classification performance was summarized by AUC with 95% confidence intervals and DeLong tests.
+**Results:** Detection model performance varied across datasets, with training on clinically curated
+annotations (DLCS) outperforming training on research-focused annotations (LUNA16), achieving
+higher sensitivity at 2 FP/scan on external validation with NLST-3D (0.72 vs 0.64; p < .001). For
+malignancy classification, performance also differed substantially by dataset, with ResNet50‑SWS
+achieving AUCs of 0.71 (DLCS; 95% CI, 0.61-0.81), 0.90 (LUNA16; 0.87-0.93), 0.81 (NLST‑3D; 0.79-
+0.82), and 0.80 (LUNA25; 0.78-0.82), matching or exceeding the other four classification strategies.
+ResNet50-SWS significantly outperformed randomly initialized ResNet50 model and Models Genesis on
+all large external datasets (p < .001).
+**Conclusion:** This study establishes a transparent, multi-dataset benchmark that demonstrates lung cancer
+detection and classification performance is strongly driven by dataset characteristics. This benchmark
+framework provides reproducible evaluation of lung nodule AI under differing reference standards,
+supporting informed comparison and future translational studies.
 
 
 ### Citation Manuscript 
@@ -47,10 +57,12 @@ A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, �
 
 - **[1] 3/5/2025** - 📢 Public release of **trained model weights**.
 - **[2] 3/7/2025** - 🖼️ Added **visualization script** for **DLCSD24**.
-- **[3]** - 📂 Public release of **pre-processed dataset** ![Coming Soon](https://img.shields.io/badge/Status-Coming%20Soon-orange).
-- **[4]** - 📊 Benchmarking on **LUNA25 dataset** ![Coming Soon](https://img.shields.io/badge/Status-Coming%20Soon-orange).
-- **[5]** - 🔍 **Pseudo-segmentation** of DLCSD24 nodules using **Vista3D, nnUNetv2**, and **[SYN-LUNGS](https://github.com/fitushar/SYN-LUNGS)**. ![Coming Soon](https://img.shields.io/badge/Status-Coming%20Soon-orange)
-- **[6]** - ⚙️ **ML-based segmentation and radiomics classification benchmark** ![Coming Soon](https://img.shields.io/badge/Status-Coming%20Soon-orange).
+- **[3] 9/2/2026** - 📂 Public release of **pre-processing scripr for classification**: https://github.com/fitushar/PiNS/.
+- **[4] 9/2/2026** - 📊 Benchmarking on **LUNA25 dataset** Reported to new pre-print (version 5: https://arxiv.org/abs/2405.04605).
+- **[5] 9/2/2026** - 🔍 **Pseudo-segmentation Scripts** of DLCSD24 nodules using **PiNS librray** (https://github.com/fitushar/PiNS/). 
+- **[6] 9/2/2026** - ⚙️ **ML-based segmentation & radiomics classification benchmark againest DL** : (https://arxiv.org/abs/2411.16008).
+
+
 - **[7]** - 🎯 **Post-hoc visualization** of model predictions and associated code ![Coming Soon](https://img.shields.io/badge/Status-Coming%20Soon-orange).
 
 # Related Studies:
