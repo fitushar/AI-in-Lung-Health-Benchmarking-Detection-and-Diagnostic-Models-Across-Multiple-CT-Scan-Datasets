@@ -34,21 +34,29 @@ supporting informed comparison and future translational studies.
 
 
 ```ruby
-@article{tushar2024ai,
-  title={AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets},
-  author={Tushar, Fakrul Islam and Wang, Avivah and Dahal, Lavsen and Harowicz, Michael R and Lafata, Kyle J and Tailor, Tina D and Lo, Joseph Y},
-  journal={arXiv preprint arXiv:2405.04605},
-  year={2024}
+@misc{tushar2026reproduciblebenchmarkinglungnodule,
+      title={Reproducible Benchmarking for Lung Nodule Detection and Malignancy Classification Across Multiple Low-Dose CT Datasets}, 
+      author={Fakrul Islam Tushar and Avivah Wang and Lavsen Dahal and Ehsan Samei and Michael R. Harowicz and Jayashree Kalpathy-Cramer and Kyle J. Lafata and Tina D. Tailor and Cynthia Rudin and Joseph Y. Lo},
+      year={2026},
+      eprint={2405.04605},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2405.04605}, 
 }
 ```
-```ruby
-Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
-```
-### Citation Dataset- Duke Lung
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13799069.svg)](https://doi.org/10.5281/zenodo.13799069) 
+### Citation Dataset- Duke Lung Cancer Screening Dataset 2024 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13799069.svg)](https://doi.org/10.5281/zenodo.13799069) 
 ```ruby
-A. Wang, F. I. TUSHAR, M. R. Harowicz, K. J. Lafata, T. D. Tailorand J. Y. Lo, “Duke Lung Cancer Screening Dataset 2024”. Zenodo, Mar. 05, 2024. doi: 10.5281/zenodo.13799069.
+@article{wang2025duke,
+  title={The Duke Lung Cancer Screening (DLCS) dataset: a reference dataset of annotated low-dose screening thoracic CT},
+  author={Wang, Avivah J and Tushar, Fakrul Islam and Harowicz, Michael R and Tong, Betty C and Lafata, Kyle J and Tailor, Tina D and Lo, Joseph Y},
+  journal={Radiology: Artificial Intelligence},
+  volume={7},
+  number={4},
+  pages={e240248},
+  year={2025},
+  publisher={Radiological Society of North America}
+}
 ```
 
 ## 🚀 Updates
@@ -138,9 +146,44 @@ The performance of the models was evaluated using the Free-Response Receiver Ope
 
 ## DLCSD-mD Run and Example
 
-### | DLCSD-mD 1.1 Data Pre-processing 
+### | DLCSD-mD 1.1 Data Pre-processing
 
+**Nifti Resampling function, Hu Cliping, and normalization performed on the fly for Detection during Training & Inference.**
 
+```ruby
+import os
+import argparse
+import numpy as np
+import SimpleITK as sitk
+import pandas as pd
+
+def resample_img(itk_image, out_spacing, is_label=False):
+    # Resample images to the specified spacing
+    original_spacing = itk_image.GetSpacing()
+    original_size = itk_image.GetSize()
+
+    out_size = [
+        int(np.round(original_size[0] * (original_spacing[0] / out_spacing[0]))),
+        int(np.round(original_size[1] * (original_spacing[1] / out_spacing[1]))),
+        int(np.round(original_size[2] * (original_spacing[2] / out_spacing[2])))
+    ]
+
+    resample = sitk.ResampleImageFilter()
+    resample.SetOutputSpacing(out_spacing)
+    resample.SetSize(out_size)
+    resample.SetOutputDirection(itk_image.GetDirection())
+    resample.SetOutputOrigin(itk_image.GetOrigin())
+    resample.SetTransform(sitk.Transform())
+    resample.SetDefaultPixelValue(itk_image.GetPixelIDValue())
+
+    if is_label:
+        resample.SetInterpolator(sitk.sitkNearestNeighbor)
+    else:
+        resample.SetInterpolator(sitk.sitkBSpline)
+
+    return resample.Execute(itk_image)
+
+```
 ### | DLCSD-mD 1.2 training configs and env files
 
 we provided the pre-processed data-split json files, can be found at: **/ct_detection/datasplit_folds/DukeLungRADs_trcv4_fold1.json**, required by the model for train/validation/evaliation.
