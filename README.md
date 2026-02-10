@@ -27,6 +27,7 @@ detection and classification performance is strongly driven by dataset character
 framework provides reproducible evaluation of lung nodule AI under differing reference standards,
 supporting informed comparison and future translational studies.
 
+![Cancer Classification](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/blob/main/readme_figures/Dataset_Figure.png)
 
 ### Citation Manuscript 
 
