@@ -131,7 +131,32 @@ The complete code for generating the 3D annotations, along with a visualization 
 
 
 
-# Benchmark- Nodule Detection 
+# Benchmark- Nodule Detection
+
+**Table:** FROC sensitivity at the predefined false-positive (FP) per scan operating points of the LUNA16 challenge (1/8–8 FP/scan).  
+Average (CPM) denotes the mean sensitivity across these operating points, consistent with prior LUNA16 benchmark reporting.
+
+| Model              | 1/8  | 1/4  | 0.5  | 1.0  | 2.0  | 4.0  | 8.0  | Average (CPM) |
+|--------------------|------|------|------|------|------|------|------|----------------|
+| Liu et al. (2019)  | 0.85 | 0.88 | 0.91 | 0.93 | 0.94 | 0.96 | 0.97 | 0.92 |
+| nnDetection        | 0.81 | 0.89 | 0.93 | 0.95 | 0.97 | 0.98 | 0.99 | 0.93 |
+| LUNA16-De          | 0.84 | 0.89 | 0.93 | 0.96 | 0.97 | 0.98 | 0.99 | 0.94 |
+| **DLCS-De (ours)** | 0.80 | 0.86 | 0.91 | 0.94 | 0.97 | 0.98 | 0.99 | 0.92 |
+
+**Note:** CPM = Competition Performance Metric.
+
+**Supplementary Table S2.** Detection performance on DLCS (internal test) and NLST-3D (external test).
+Data are reported as mean (95% CI). Average sensitivity is calculated over 0.125–8 false positives (FP) per scan.
+Paired bootstrap comparisons were computed on scans common to both models within each dataset.
+
+| Dataset / Test | Metric | LUNA16-De | DLCS24-De | Difference (DLCS24-De − LUNA16-De) | P value |
+|----------------|--------|-----------|-----------|-----------------------------------|--------|
+| **DLCS (Internal test)** (n = 198) | Avg sensitivity | 0.57 (0.53, 0.62) | 0.64 (0.59, 0.68) | 0.061 (0.031, 0.092) | < .001 |
+| | Sensitivity @ 2 FP/scan | 0.72 (0.67, 0.78) | 0.82 (0.76, 0.86) | 0.099 (0.040, 0.141) | < .001 |
+| **NLST-3D (External test)** (n = 969) | Avg sensitivity | 0.49 (0.47, 0.52) | 0.58 (0.56, 0.61) | 0.093 (0.076, 0.106) | < .001 |
+| | Sensitivity @ 2 FP/scan | 0.64 (0.60, 0.67) | 0.72 (0.69, 0.75) | 0.083 (0.064, 0.106) | < .001 |
+
+
 
 The lung cancer (Nodule) detection task is defined as identifying lung nodules within 3D CT scans and localizing them using 3D bounding boxes. To achieve this, we utilized the [MONAI](https://github.com/Project-MONAI/tutorials/tree/main/detection) detection workflow to train and validate 3D detection models based on RetinaNet, enabling straightforward implementation of our benchmark models.
 
@@ -300,36 +325,36 @@ python3 /path/to/ct_detection/training.py -e /path/to/ct_detection/DukeLungRADS_
 
 python3 /path/to/ct_detection/testing.py -e /path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/config/environment_DukeLungRADS_BaseModel_epoch300_patch192x192y80z_fold1.json -c /path/to/ct_detection/DukeLungRADS_BaseModel_epoch300_patch192x192y80z/training_config.json
 ```
-
-
-### | DLCSD-mD 1.5 Testing 
-
-🚀 Coming Soon
-
-### | DLCSD-mD 1.6 Evaluation and Benchmark
-
-
-🚀 Coming Soon
-
-
-### codes
-
-🚀 Coming Soon
-
-
+-------
 # Benchmark- Lungs Cancer Classification Task
 
 
-We define the lung cancer classification task as given a nodule classifying it as cancer or no-cancer. To benchmark the lung cancer classification task, we employed five different baseline models, including randomly initialized, supervised, and self-supervised pre-trained models, as well as our in-house proposed Strategic Warm-Start++ (SWS++) model.
+We define the lung cancer classification task as given a nodule classifying it as cancer or no-cancer. To benchmark the lung cancer classification task, we employed five different baseline models, including randomly initialized, supervised, and self-supervised pre-trained models, as well as our in-house proposed Strategic Warm-Start (SWS) model.
 
-
-![Cancer Classification](https://github.com/fitushar/AI-in-Lung-Health-Benchmarking-Detection-and-Diagnostic-Models-Across-Multiple-CT-Scan-Datasets/blob/main/readme_figures/cancer_classifications_1.PNG)
 
 * **3D ResNet50**
 * **FMCB:** We adopted a recently published foundational model based on a self-supervised ResNet50, referred to as “FMCB.” We used it to extract 4,096 features per data point and trained a logistic regression model using the scikit-learn framework as suggested by authors. [Pai, S. et al. (2024)](https://www.nature.com/articles/s42256-024-00807-9)
 *  **Genesis:**  Models-Genesis's pre-trained ResNet50, added a classification layer on top of it and trained end-to-end. [Zhou, Z., et al. (2021)](https://www.sciencedirect.com/science/article/pii/S1361841520302048)
 *  **MedNet3D:** Med3D’s ResNet50 pre-trained ResNet50, we have added a classification layer on top of it and trained end-to-end. [Chen,S., et al. (2019)](https://arxiv.org/abs/1904.00625)
-*  **ResNet50-SWS++:** We developed an in-house model using our novel Strategic WarmStart++ (SWS++) pretraining approach. The method involved training a ResNet50 to reduce false positives in lung nodule detection, using a carefully stratified dataset based on nodule confidence scores. The resulting model, “ResNet50-SWS++,” was then fine-tuned for end-to-end lung cancer classification. [Tushar, F. I., et al. (2024)](https://arxiv.org/abs/2405.04605)
+*  **ResNet50-SWS:** We developed an in-house model using our novel Strategic WarmStart (SWS) pretraining approach. The method involved training a ResNet50 to reduce false positives in lung nodule detection, using a carefully stratified dataset based on nodule confidence scores. The resulting model, “ResNet50-SWS++,” was then fine-tuned for end-to-end lung cancer classification. [Tushar, F. I., et al. (2024)](https://arxiv.org/abs/2405.04605)
+
+
+**Table:** Model performance (AUC) across datasets.
+Data are bootstrapped mean areas under the receiver operating characteristic curve (AUC), with 95% confidence intervals (CIs) in parentheses.
+Statistical significance is assessed relative to the reference model (ResNet50-SWS) using the DeLong test.
+
+| Model | DLCS (n = 294) | LUNA16 (n = 677) | NLST-3D (n = 3128) | LUNA25 (n = 6163) |
+|------|----------------|------------------|--------------------|------------------|
+| ResNet50 | 0.60 (0.49–0.70) | 0.78 (0.74–0.82)† | 0.63 (0.61–0.65)† | 0.75 (0.73–0.78)† |
+| FMBI | 0.71 (0.60–0.82) | 0.87 (0.84–0.90)* | 0.79 (0.77–0.80)* | 0.82 (0.80–0.83) |
+| Genesis | 0.64 (0.53–0.75) | 0.78 (0.74–0.81)† | 0.51 (0.48–0.53)† | 0.51 (0.49–0.54)† |
+| Med3D | 0.67 (0.57–0.77) | 0.78 (0.75–0.82)† | 0.74 (0.72–0.76)† | 0.80 (0.78–0.82) |
+| **ResNet50-SWS** | **0.71 (0.61–0.81)** | **0.90 (0.87–0.93)** | **0.81 (0.79–0.82)** | **0.80 (0.78–0.82)** |
+
+**Note:**  
+* = p < 0.05, † = p < 0.001 (DeLong test vs. ResNet50-SWS).  
+**ResNet50-SWS** is the reference model. *n* denotes the number of nodules.
+
 
 
 
