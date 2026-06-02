@@ -554,9 +554,30 @@ demofolder/output/DLCS24_64Q_CAD_patches/
 ├── patches.csv       # Patch-level metadata and labels
 ```
 
+## License
 
+This repository is released for **non-commercial research and academic use only.**
 
+| Component | License |
+|---|---|
+| Source code | [PolyForm Noncommercial License 1.0.0](./LICENSE.md) |
+| DLCS dataset, derived NLST-3D annotations, and trained model weights | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) |
 
+Use by educational institutions, public research organizations, government,
+and other noncommercial entities is permitted regardless of funding source.
+**Commercial use of any kind requires a separate license** — please contact
+the corresponding author.
+
+Third-party components (e.g., MONAI, Models Genesis, Med3D, the Foundation
+Model for Cancer Biomarkers) remain under their own original licenses; users
+must comply with those terms independently. External datasets (LUNA16, LUNA25,
+NLST/TCIA) are governed by their respective data-use agreements and are not
+redistributed here.
+
+Copyright (c) 2026 Fakrul Islam Tushar, University of Arizona & Duke University.
+
+If you use this benchmark, code, data, or weights, please cite:
+* Tushar, Fakrul Islam, et al. "AI in Lung Health: Benchmarking Detection and Diagnostic Models Across Multiple CT Scan Datasets." arXiv preprint arXiv:2405.04605 (2024).
 
 # Citations
 
